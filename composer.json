@@ -1,0 +1,48 @@
+{
+    "name": "swisnl/phpstan-faker",
+    "type": "phpstan-extension",
+    "description": "PHPStan Reflection extension for custom Faker providers",
+    "keywords": [
+        "phpstan",
+        "reflection",
+        "faker",
+        "testing"
+    ],
+    "homepage": "https://github.com/swisnl/phpstan-faker",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rolf van de Krol",
+            "email": "rvandekrol@swis.nl",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0",
+        "ext-json": "*",
+        "phpstan/phpstan": "^1.0"
+    },
+    "require-dev": {
+        "fakerphp/faker": "^1.21",
+        "laravel/pint": "^1.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Swis\\PHPStan\\Reflection\\": "src"
+        }
+    },
+    "extra": {
+        "phpstan": {
+            "includes": [
+                "extension.neon"
+            ]
+        }
+    },
+    "scripts": {
+        "analyse": "vendor/bin/phpstan analyse",
+        "format": "vendor/bin/pint"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

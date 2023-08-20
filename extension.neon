@@ -1,0 +1,17 @@
+parametersSchema:
+    faker: structure([
+        providerClasses: listOf(string())
+    ])
+
+parameters:
+    faker:
+        providerClasses: []
+
+services:
+    reflectionExtension.fakerProvider:
+        class: Swis\PHPStan\Reflection\FakerProviderReflectionExtension
+        tags:
+            - phpstan.broker.propertiesClassReflectionExtension
+            - phpstan.broker.methodsClassReflectionExtension
+        arguments:
+            providerClasses: '%faker.providerClasses%'
