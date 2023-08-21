@@ -103,7 +103,7 @@ class FakerProviderReflectionExtension implements PropertiesClassReflectionExten
                 $providerReflection = $this->reflectionProvider->getClass($providerClass);
                 try {
                     $methodReflection = $providerReflection->getMethod($methodName, new OutOfClassScope());
-                    if ($methodReflection->isPublic()) {
+                    if (!$methodReflection->isStatic() && $methodReflection->isPublic()) {
                         return $methodReflection;
                     }
                 } catch (MissingMethodFromReflectionException $e) {
