@@ -6,4 +6,9 @@ Updates should follow the [Keep a CHANGELOG](https://keepachangelog.com/) princi
 
 ## [Unreleased]
 
+- Nothing
+
+## [1.0.0]
+
 - First working version of the extension
+
