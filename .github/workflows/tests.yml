@@ -1,0 +1,53 @@
+name: Tests
+
+on:
+    push:
+    pull_request:
+    schedule:
+        - cron:  '0 1 * * *'
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                php: [ '8.1', '8.2', '8.3' ]
+        steps:
+            - uses: actions/checkout@v4
+            - name: Setup PHP with tools
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: ${{ matrix.php }}
+                  tools: composer
+            - run: composer install
+            - run: composer test
+
+    format:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                php: [ '8.1' ]
+        steps:
+            - uses: actions/checkout@v4
+            - name: Setup PHP with tools
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: ${{ matrix.php }}
+                  tools: composer
+            - run: composer install
+            - run: composer format
+
+    analyse:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                php: [ '8.1' ]
+        steps:
+            - uses: actions/checkout@v4
+            - name: Setup PHP with tools
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: ${{ matrix.php }}
+                  tools: composer
+            - run: composer install
+            - run: composer analyse
