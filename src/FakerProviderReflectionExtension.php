@@ -11,7 +11,7 @@ use PHPStan\Reflection\PropertiesClassReflectionExtension;
 use PHPStan\Reflection\PropertyReflection;
 use PHPStan\Reflection\ReflectionProvider;
 
-class FakerProviderReflectionExtension implements PropertiesClassReflectionExtension, MethodsClassReflectionExtension
+class FakerProviderReflectionExtension implements MethodsClassReflectionExtension, PropertiesClassReflectionExtension
 {
     protected ReflectionProvider $reflectionProvider;
 
@@ -51,7 +51,7 @@ class FakerProviderReflectionExtension implements PropertiesClassReflectionExten
         if ($method === null) {
             // This should never happen, because hasMethod() should always be
             // called first.
-            throw new \PHPStan\ShouldNotHappenException();
+            throw new \PHPStan\ShouldNotHappenException;
         }
 
         return $method;
@@ -69,7 +69,7 @@ class FakerProviderReflectionExtension implements PropertiesClassReflectionExten
         if ($property === null) {
             // This should never happen, because hasProperty() should always be
             // called first.
-            throw new \PHPStan\ShouldNotHappenException();
+            throw new \PHPStan\ShouldNotHappenException;
         }
 
         return $property;
@@ -102,8 +102,8 @@ class FakerProviderReflectionExtension implements PropertiesClassReflectionExten
             foreach ($this->providerClasses as $providerClass) {
                 $providerReflection = $this->reflectionProvider->getClass($providerClass);
                 try {
-                    $methodReflection = $providerReflection->getMethod($methodName, new OutOfClassScope());
-                    if (!$methodReflection->isStatic() && $methodReflection->isPublic()) {
+                    $methodReflection = $providerReflection->getMethod($methodName, new OutOfClassScope);
+                    if (! $methodReflection->isStatic() && $methodReflection->isPublic()) {
                         return $methodReflection;
                     }
                 } catch (MissingMethodFromReflectionException $e) {

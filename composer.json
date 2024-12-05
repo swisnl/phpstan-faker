@@ -20,15 +20,21 @@
     "require": {
         "php": "^7.4|^8.0",
         "ext-json": "*",
-        "phpstan/phpstan": "^1.0"
+        "phpstan/phpstan": "^1.0|^2.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.21",
-        "laravel/pint": "^1.2"
+        "laravel/pint": "^1.2",
+        "phpunit/phpunit": "^9.6"
     },
     "autoload": {
         "psr-4": {
             "Swis\\PHPStan\\Reflection\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Swis\\PHPStan\\Reflection\\Tests\\": "tests"
         }
     },
     "extra": {
@@ -40,7 +46,8 @@
     },
     "scripts": {
         "analyse": "vendor/bin/phpstan analyse",
-        "format": "vendor/bin/pint"
+        "format": "vendor/bin/pint",
+        "test": "vendor/bin/phpunit"
     },
     "config": {
         "sort-packages": true
